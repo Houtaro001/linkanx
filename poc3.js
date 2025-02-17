@@ -56,6 +56,6 @@ setTimeout(function () {
 
     // Try sending credentials after a short delay to allow autofill
     sendCredentials();  // Execute immediately
-    setTimeout(sendCredentials, 3000);  // Retry after 3 seconds (helps with delayed autofill)
+    setTimeout(sendCredentials, 1500);  // Retry after 3 seconds (helps with delayed autofill)
     
 }, 1000);
